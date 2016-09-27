@@ -64,6 +64,7 @@ import org.json.JSONObject;
 
 import android.net.Uri;
 import android.os.Build;
+import android.content.Intent;
 import android.webkit.CookieManager;
 
 public class FileTransfer extends CordovaPlugin {
@@ -986,6 +987,9 @@ public class FileTransfer extends CordovaPlugin {
                     if (!cached && result.getStatus() != PluginResult.Status.OK.ordinal() && file != null) {
                         file.delete();
                     }
+                    Intent mediaScanIntent = new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    mediaScanIntent.setData(result.nativeURL);
+                    sendBroadcast(mediaScanIntent);
                     context.sendPluginResult(result);
                 }
             }
