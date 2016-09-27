@@ -941,7 +941,7 @@ public class FileTransfer extends CordovaPlugin {
                         if (filePlugin != null) {
                             JSONObject fileEntry = filePlugin.getEntryForFile(file);
                             if (fileEntry != null) {
-                                       Context context=this.cordova.getActivity().getApplicationContext();
+                                       Context context=cordova.getActivity().getApplicationContext();
                                        //or Context context=cordova.getActivity().getApplicationContext();
                                        //Intent intent=new Intent(context,Next_Activity.class);
 
