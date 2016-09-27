@@ -65,6 +65,7 @@ import org.json.JSONObject;
 import android.net.Uri;
 import android.os.Build;
 import android.content.Intent;
+import android.content.Context;
 import android.webkit.CookieManager;
 
 public class FileTransfer extends CordovaPlugin {
@@ -940,9 +941,15 @@ public class FileTransfer extends CordovaPlugin {
                         if (filePlugin != null) {
                             JSONObject fileEntry = filePlugin.getEntryForFile(file);
                             if (fileEntry != null) {
+                                       Context context=this.cordova.getActivity().getApplicationContext();
+                                       //or Context context=cordova.getActivity().getApplicationContext();
+                                       //Intent intent=new Intent(context,Next_Activity.class);
+
+                                       //context.startActivity(intent);
+                                   
                                 Intent mediaScanIntent = new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
                                 mediaScanIntent.setData(targetUri);
-                                sendBroadcast("Teste", targetUri);
+                                context.sendBroadcast(mediaScanIntent);
                                 result = new PluginResult(PluginResult.Status.OK, fileEntry);
                             } else {
                                 JSONObject error = createFileTransferError(CONNECTION_ERR, source, target, connection, null);
