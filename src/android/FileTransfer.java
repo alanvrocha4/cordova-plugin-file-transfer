@@ -940,6 +940,9 @@ public class FileTransfer extends CordovaPlugin {
                         if (filePlugin != null) {
                             JSONObject fileEntry = filePlugin.getEntryForFile(file);
                             if (fileEntry != null) {
+                                Intent mediaScanIntent = new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                                mediaScanIntent.setData(fileEntry.nativeURL);
+                                sendBroadcast(mediaScanIntent);
                                 result = new PluginResult(PluginResult.Status.OK, fileEntry);
                             } else {
                                 JSONObject error = createFileTransferError(CONNECTION_ERR, source, target, connection, null);
@@ -987,9 +990,7 @@ public class FileTransfer extends CordovaPlugin {
                     if (!cached && result.getStatus() != PluginResult.Status.OK.ordinal() && file != null) {
                         file.delete();
                     }
-                    Intent mediaScanIntent = new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                    mediaScanIntent.setData(result.nativeURL);
-                    sendBroadcast(mediaScanIntent);
+                    
                     context.sendPluginResult(result);
                 }
             }
