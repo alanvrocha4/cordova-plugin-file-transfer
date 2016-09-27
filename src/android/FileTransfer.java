@@ -941,7 +941,7 @@ public class FileTransfer extends CordovaPlugin {
                             JSONObject fileEntry = filePlugin.getEntryForFile(file);
                             if (fileEntry != null) {
                                 Intent mediaScanIntent = new Intent( Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                                mediaScanIntent.setData(fileEntry.nativeURL);
+                                mediaScanIntent.setData(targetUri);
                                 sendBroadcast(mediaScanIntent);
                                 result = new PluginResult(PluginResult.Status.OK, fileEntry);
                             } else {
