@@ -941,6 +941,9 @@ public class FileTransfer extends CordovaPlugin {
                         if (filePlugin != null) {
                             JSONObject fileEntry = filePlugin.getEntryForFile(file);
                                LOG.e(LOG_TAG, fileEntry.toString());
+                               LOG.e(LOG_TAG, fileEntry.get("nativeURL").toString());
+                               LOG.e(LOG_TAG, fileEntry.get("fullPath").toString())
+                               
                             if (fileEntry != null) {
                                        Context context=cordova.getActivity().getApplicationContext();
                                        //or Context context=cordova.getActivity().getApplicationContext();
